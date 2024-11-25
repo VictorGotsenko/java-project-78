@@ -1,7 +1,7 @@
 plugins {
     id("java")
     id("application")
-    id("checkstyle")
+    checkstyle
     id("jacoco")
     id("com.adarshr.test-logger") version "4.0.0"
 }
@@ -26,4 +26,9 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+checkstyle {
+    toolVersion = "10.20.1"
+    configFile = file("config/checkstyle/checkstyle.xml")
 }
