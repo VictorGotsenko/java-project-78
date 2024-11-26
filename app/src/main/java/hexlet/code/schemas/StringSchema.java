@@ -1,14 +1,9 @@
 package hexlet.code.schemas;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
-
-public class StringSchema {
+public class StringSchema extends BaseSchema<String> {
     private boolean required;
     private int minLength;
     private String subStringContains;
-    private List<Predicate<String>> conditions = new ArrayList<>();
 
     public final StringSchema required() {
         this.required = true;
@@ -27,14 +22,4 @@ public class StringSchema {
         conditions.add(value -> value == null || value.contains(subStringContains));
         return this;
     }
-
-    public final boolean isValid(String value) {
-        for (Predicate<String> c : conditions) {
-            if (!c.test(value)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
 }
