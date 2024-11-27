@@ -1,23 +1,16 @@
+.PHONY: build
 .DEFAULT_GOAL := build-run
 
 clean:
 	./gradlew clean
-
+lint:
+	./gradlew checkstyleMain
 build:
-	./gradlew clean build
-
+	./gradlew build
 test:
 	./gradlew test
-
 report:
 	./gradlew jacocoTestReport
-
-lint:
-	./gradlew checkstyleMain checkstyleTest
-
 update-deps:
 	./gradlew useLatestVersions
-
 build-run: build run
-
-.PHONY: build
