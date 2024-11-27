@@ -1,7 +1,10 @@
 name: Data-Validator
 on:
-  - push
-  - pull_request
+# События, которые запускают jobs
+    push:
+      branches: [ "main" ]
+    pull_request:
+      branches: [ "main" ]
       
 jobs:
   build:
@@ -20,12 +23,18 @@ jobs:
       uses: gradle/actions/setup-gradle@v4
       with:
           gradle-version: 8.7
-    - name: Run build in a subdirectory
-      working-directory: app
+    
     - name: Build with Gradle Wrapper
-      run: ./gradlew build
+      run: make build
+
+    - name: Checking style with Gradle
+      run: make lint
+
+    - name: Testing with Gradle
+      run: make test
+    
     - name: Publish code coverage
-      uses: paambaati/codeclimate-action@v9.0.0
+      uses: paambaati/codeclimate-action@v5.0.0
       env:
         CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         JACOCO_SOURCE_PATH: app/src/main/java
