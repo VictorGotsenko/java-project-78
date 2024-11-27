@@ -25,7 +25,7 @@ jobs:
           gradle-version: 8.7
     
     - name: Build with Gradle Wrapper
-      run: make build
+      run: ./gradlew build
 
     - name: Checking style with Gradle
       run: make lint
