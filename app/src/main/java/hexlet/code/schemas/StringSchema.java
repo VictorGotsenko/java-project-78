@@ -5,19 +5,19 @@ public class StringSchema extends BaseSchema<String> {
     private String subStringContains;
 
     public final StringSchema required() {
-        conditions.add(value -> value != null && !value.isEmpty());
+        conditions.put("required", value -> value != null && !value.isEmpty());
         return this;
     }
 
     public final StringSchema minLength(int length) {
         this.minLength = length;
-        conditions.add(value -> value == null || value.length() >= minLength);
+        conditions.put("minLength", value -> value == null || value.length() >= minLength);
         return this;
     }
 
     public final StringSchema contains(String substring) {
         this.subStringContains = substring;
-        conditions.add(value -> value == null || value.contains(subStringContains));
+        conditions.put("contains", value -> value == null || value.contains(subStringContains));
         return this;
     }
 }

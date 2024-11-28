@@ -52,4 +52,6 @@ public class NumberSchemaTest {
         assertFalse(schema.isValid(0));
         assertFalse(schema.isValid(11));
     }
+
+
 }
