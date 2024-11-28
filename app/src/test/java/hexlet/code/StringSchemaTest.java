@@ -42,4 +42,13 @@ public class StringSchemaTest {
         schema.contains("whatthe");
         assertFalse(schema.isValid("what does the fox say")); // false
     }
+    @Test
+    public void stringSchemaTestAddChecks() {
+        var v = new Validator();
+        var schema = v.string().required().minLength(5).contains("xle");
+        assertFalse(schema.isValid("what does the fox say")); // false
+        assertTrue(schema.isValid("Hexlet"));
+        var schema1 = v.string();
+        assertTrue(schema1.minLength(10).minLength(4).isValid("Hexlet")); // true
+    }
 }

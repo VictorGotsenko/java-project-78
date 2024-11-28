@@ -1,16 +1,15 @@
 package hexlet.code.schemas;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 
-abstract class BaseSchema<T> {
-
-    List<Predicate<T>> conditions = new ArrayList<>();
+public abstract class BaseSchema<T> {
+    Map<String, Predicate<T>> conditions = new HashMap<>();
 
     public final boolean isValid(T value) {
-        for (Predicate<T> c : conditions) {
-            if (!c.test(value)) {
+        for (String r : conditions.keySet()) {
+            if (!conditions.get(r).test(value)) {
                 return false;
             }
         }
