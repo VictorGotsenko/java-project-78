@@ -36,29 +36,28 @@ checkstyle {
 
 jacoco {
     toolVersion = "0.8.12"
-//    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
 }
 
 tasks.test {
     useJUnitPlatform()
     finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
-    testlogger {
-        theme = ThemeType.MOCHA
-        showStandardStreams = true
-        showExceptions = true
-        showStackTraces = true
-        showSummary = true
-        showSimpleNames = false
-        showPassed = true
-        showSkipped = true
-        showFailed = true
-        showOnlySlow = false
-        showStandardStreams = false
-        showPassedStandardStreams = true
-        showSkippedStandardStreams = true
-        showFailedStandardStreams = true
-        logLevel = LogLevel.LIFECYCLE
-    }
+//    testlogger {
+//        theme = ThemeType.MOCHA
+//        showStandardStreams = true
+//        showExceptions = true
+//        showStackTraces = true
+//        showSummary = true
+//        showSimpleNames = false
+//        showPassed = true
+//        showSkipped = true
+//        showFailed = true
+//        showOnlySlow = false
+//        showStandardStreams = false
+//        showPassedStandardStreams = true
+//        showSkippedStandardStreams = true
+//        showFailedStandardStreams = true
+//        logLevel = LogLevel.LIFECYCLE
+//    }
 }
 
 tasks.jacocoTestReport {
