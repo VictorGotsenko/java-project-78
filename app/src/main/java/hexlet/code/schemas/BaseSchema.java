@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 public abstract class BaseSchema<T> {
-    boolean isRequired = false;
+    protected boolean isRequired = false;
     private Map<String, Predicate<T>> conditions = new LinkedHashMap<>();
 
     BaseSchema() {
