@@ -4,8 +4,8 @@ import java.util.Map;
 
 public class MapSchema extends BaseSchema<Map<String, ?>> {
 
-
     public final MapSchema required() {
+        super.isRequired = true;
         setConditions("required", inspectedMap -> inspectedMap != null);
         return this;
     }
@@ -16,10 +16,13 @@ public class MapSchema extends BaseSchema<Map<String, ?>> {
     }
 
     public final <T> MapSchema shape(Map<String, BaseSchema<T>> schemas) {
-        for (String key : schemas.keySet()) {
-            BaseSchema<T> schemaForField = schemas.get(key);
-            setConditions(key, inspectedMap -> schemaForField.isValid((T) inspectedMap.get(key)));
-        }
+        setConditions("shape", map -> {
+            return schemas.entrySet().stream().allMatch(e -> {
+                var v = map.get(e.getKey());
+                var schema = e.getValue();
+                return schema.isValid((T) v);
+            });
+        });
         return this;
     }
 }
